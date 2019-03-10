@@ -1,0 +1,93 @@
+﻿@model EmployeeSalary
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Employee Salary</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="row">
+    <div class="col-sm-8">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+               
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <input type="hidden" name="EmployeeId" value="@ViewBag.EmployeeId" />
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        Employee Name
+                    </dt>
+
+                    <dd>
+                        @ViewBag.EmployeeName
+                    </dd>
+                    <dt>
+                        Building
+                    </dt>
+
+                    <dd>
+                        @ViewBag.Building
+                    </dd>
+                    <dt>
+                        Position
+                    </dt>
+
+                    <dd>
+                        @ViewBag.Position
+                    </dd>
+                    <dt class="text-info">
+                        Salary
+                    </dt>
+
+                    <dd class="text-info">
+                        @ViewBag.Salary
+                    </dd>
+                    <dt class="text-danger">
+                        Total Paid
+                    </dt>
+
+                    <dd class="text-danger">
+                        @ViewBag.Paid
+                    </dd>
+
+                </dl>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AmmountPaid, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AmmountPaid, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AmmountPaid, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

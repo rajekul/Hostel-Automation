@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Room>
+
+@{
+    ViewBag.Title = "Rooms";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Rooms</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info btn-large" })
+</p>
+<div class="row">
+    <div class="col-sm-10">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Building.BuildingName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomCategory.CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalSeat)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Building.BuildingName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomCategory.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalSeat)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.RoomId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RoomId }, new { @class = "text-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

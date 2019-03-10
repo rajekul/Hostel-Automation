@@ -1,0 +1,55 @@
+﻿@model Building
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Building</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+        <h4>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.BuildingName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BuildingName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rooms)
+                </dt>
+
+                <dd>
+                    @ViewBag.Rooms
+                </dd>
+                <dt>
+                    Members
+                </dt>
+
+                <dd>
+                    @ViewBag.member
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+            </dl>
+        </h4>
+</div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BuildingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

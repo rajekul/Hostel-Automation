@@ -1,0 +1,111 @@
+﻿@model Member
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Member Details</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="row">
+    <h4>
+        <dl class="dl-horizontal">
+            <dt>
+                Building
+            </dt>
+
+            <dd>
+                @ViewBag.Building
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Room.RoomNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Room.RoomNo)
+            </dd>
+            <dt>
+                Seat Rent
+            </dt>
+
+            <dd>
+                @ViewBag.Rent
+            </dd>
+            <dt class="text-danger">
+                Bill
+            </dt>
+
+            <dd class="text-danger">
+                @ViewBag.bill
+            </dd>
+            <dt class="text-danger">
+                Paid
+            </dt>
+
+            <dd class="text-danger">
+                @ViewBag.pay
+            </dd>
+            <dt class="text-danger">
+                Balance
+            </dt>
+
+            <dd class="text-danger">
+                @ViewBag.balance
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MemberName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MemberName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.JoinDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.JoinDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
+
+            <dd>
+                <img src="~/Uploads/Pictures/@Html.DisplayFor(model => model.Photo)" class="img-thumbnail" alt="logo" width="250" height="200" />
+            </dd>
+        </dl>
+    </h4>
+
+</div>
+<p>
+    @Html.ActionLink("Back to List", "AdminView")
+</p>

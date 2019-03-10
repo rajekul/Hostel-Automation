@@ -1,0 +1,84 @@
+﻿@model Room
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Room</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+        <h4>
+            <dl class="dl-horizontal">
+                
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomCategory.CategoryName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomCategory.CategoryName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomCategory.RoomType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomCategory.RoomType)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomNo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomNo)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomCategory.Rent)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomCategory.Rent)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Members)
+                </dt>
+
+                <dd>
+                    @ViewBag.member
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalSeat)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalSeat)
+                </dd>
+                <dt class="text-success">
+                    Available Seat
+                </dt>
+
+                <dd>
+                    @ViewBag.availSeat
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomCategory.Facility)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomCategory.Facility)
+                </dd>
+            </dl>
+        </h4>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "ManagerView")
+</p>

@@ -1,0 +1,89 @@
+﻿@model Employee
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Enployee Details</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="row">
+    <h4>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Building.BuildingName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Building.BuildingName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Position.PositionName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Position.PositionName)
+            </dd>
+
+            <dt>
+                Salary
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Position.Salary)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AppointDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AppointDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+        </dl>
+    </h4>
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
+    @Html.ActionLink("Back to List", "Index", new { id = @Html.DisplayFor(model => model.BuildingId) })
+</p>

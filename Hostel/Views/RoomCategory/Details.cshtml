@@ -1,0 +1,72 @@
+﻿@model RoomCategory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Room Category</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+        <h4>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CategoryName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rooms)
+                </dt>
+
+                <dd>
+                    @ViewBag.Rooms
+                </dd>
+                <dt>
+                    Members
+                </dt>
+
+                <dd>
+                    @ViewBag.member
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rent)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Rent)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Facility)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Facility)
+                </dd>
+
+            </dl>
+        </h4>
+    </div>
+</div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

@@ -1,0 +1,147 @@
+﻿@model IEnumerable<MemberPayment>
+
+@{
+    ViewBag.Title = "Payments";
+    if ((string)Session["type"] == "Admin")
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else if ((string)Session["type"] == "Manager")
+    {
+        Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+    }
+}
+<script type="text/javascript">
+    $(function () {
+        $('#names').autocomplete({
+
+            source: '/Member/Search',
+            select: function (event, ui) {
+                // alert("select" + ui.item.label);
+                window.location = "/MemberPayment/Searched/"+$('#buildingid').val()+"/" + ui.item.label;
+            }
+        });
+
+    });
+    $(function () {
+
+        $('#dayfrom').datepicker({
+
+        });
+        $("#dayfrom").datepicker("option", "dateFormat", "yy-mm-dd");
+    });
+    $(function () {
+
+        $('#dayto').datepicker({
+            onSelect: function (date) {
+                window.location = "/MemberPayment/Searched/" + $('#buildingid').val() + "/" + $('#dayfrom').val() + "/" + date;
+            }
+        });
+        $("#dayto").datepicker("option", "dateFormat", "yy-mm-dd");
+    });
+</script>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Members Payment</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<input type="hidden" id="buildingid" value="@ViewBag.buildingid" />
+<p>
+    @{
+        if ((string)Session["type"] == "Manager")
+        {
+            <a href="~/MemberPayment/CreatePayment" class="btn btn-primary btn-large">Create New</a>
+        }
+
+    }
+
+</p>
+<div class="row">
+    <div class="col-sm-3 col-sm-offset-2">
+        <div class="input-group">
+            <input type="text" id="dayfrom" class="form-control" placeholder="Date form" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="input-group">
+            <input type="text" id="dayto" class="form-control" placeholder="Date To" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="input-group">
+            <input type="text" id="names" class="form-control" placeholder="Search by Name or phone" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <div >
+            <h4>Total Debit:@ViewBag.TotalDebit |&nbsp Total Credit : @ViewBag.TotalCredit |&nbsp Total Due : @ViewBag.TotalBalance </h4>
+        </div>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Member.MemberName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Debit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Credit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Balance)
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Member.MemberName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Details)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Debit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Credit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Balance)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

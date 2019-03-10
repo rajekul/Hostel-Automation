@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Bill>
+
+@{
+    ViewBag.Title = "Bills";
+    if ((string)Session["type"] == "Admin")
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else if ((string)Session["type"] == "Manager")
+    {
+        Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+    }
+
+}
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#dayfrom').datepicker({
+
+        });
+        $("#dayfrom").datepicker("option", "dateFormat", "yy-mm-dd");
+    });
+    $(function () {
+
+        $('#dayto').datepicker({
+
+            onSelect: function (date) {
+                window.location = "/Bill/Searched/"+$('#BuildingId').val()+"/" + $('#dayfrom').val() + "/" + date;
+            }
+        });
+        $("#dayto").datepicker("option", "dateFormat", "yy-mm-dd");
+
+
+    });
+
+</script>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Building Bills</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<p>
+     @Html.ActionLink("Create new", "Create", new { id = ViewBag.BuildingId }, new { @class = "btn btn-success btn-large" })
+
+</p>
+<input type="hidden" id="BuildingId" value="@ViewBag.BuildingId" />
+<div class="row">
+    <div class="col-sm-3 col-sm-offset-6">
+        <div class="input-group">
+            <input type="text" id="dayfrom" class="form-control" placeholder="Date form" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="input-group">
+            <input type="text" id="dayto" class="form-control" placeholder="Date To" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <h4 >Total Bill : @ViewBag.TotalBill</h4>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Building.BuildingName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BilledDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BillDetails)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ammount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubmitBy)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Building.BuildingName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BilledDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BillDetails)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ammount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubmitBy)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

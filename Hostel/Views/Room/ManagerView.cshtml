@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Room>
+
+@{
+    ViewBag.Title = "Rooms";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Rooms</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+<div class="row">
+    <div class="col-sm-10">
+        <table class="table table-bordered table-striped">
+            <tr>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomCategory.CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalSeat)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomCategory.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalSeat)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "ManagerDetails", new { id = item.RoomId }) 
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font: 20px Montserrat, sans-serif;
+            line-height: 1.8;
+            color: #f5f6f7;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        .bg-1 {
+            background-color: #ffffff; /* White */
+            color: #555555;
+        }
+
+        .bg-2 {
+            background-color: #2f2f2f; /* Black Gray */
+            color: #fff;
+        }
+
+        .container-fluid {
+            padding-top: 70px;
+            padding-bottom: 70px;
+            
+        }
+
+        .navbar {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            letter-spacing: 5px;
+        }
+
+        .navbar-nav li a:hover {
+            color: #1abc9c !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Home/">HostelBD</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="~/Home/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="~/User/"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="container-fluid bg-1 text-center">
+        
+        @RenderBody()
+    </div>
+
+    <!-- Footer -->
+    <footer class="container-fluid bg-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2>
+                        <u>@ViewBag.hostelname</u>
+                    </h2>
+                    @ViewBag.city,Bangladesh
+                </div>
+                <div class="col-sm-4">
+                    <h4>ADDRRESS</h4>
+                    House#@ViewBag.house  Road#@ViewBag.road  <br/>
+                    @ViewBag.area,@ViewBag.city
+                </div>
+                <div class="col-sm-4">
+                    <h4>CONTACT INFO</h4>
+                   Phone :  @ViewBag.phone <br/>
+                   Email :  @ViewBag.email
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+

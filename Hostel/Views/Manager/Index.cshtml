@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "dashboard";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+<script type="text/javascript">
+
+    	window.onload = function () {
+    		
+
+    	    var chart = new CanvasJS.Chart("chartContainer", {
+    	        theme: "theme4",
+    	        //backgroundColor: "#f2f2f2",
+    	        animationEnabled: true,
+    	        title: {
+    	            text: "Yearly Income && Costs"
+    	        },
+    	        axisY:{
+    	            title: "Ammount"
+    	        },
+    	        axisX:{
+    	            title:"Year",
+    	        },
+    	        subtitles: [
+    				{ text: "" }
+    	        ],
+    	        data: [
+    			    {
+    			        type: "area",
+
+    			        dataPoints: @Html.Raw(ViewBag.YearlyIncome),
+
+
+    			    },
+    	            
+    	            {
+    	                type: "area",
+
+    	                dataPoints: @Html.Raw(ViewBag.YearlyCost),
+
+
+    	            },
+
+    	        ]
+
+    	    });
+    	    chart.render();
+    	};
+</script>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Dashboard</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <span class="glyphicon glyphicon-globe"></span>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@ViewBag.totalEmployee</div>
+                        <div>Employees</div>
+                    </div>
+                </div>
+            </div>
+            <a href="~/Employee/ManagerView/">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="glyphicon glyphicon-circle-arrow-right pull-right"></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <span class="glyphicon glyphicon-globe"></span>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">
+                            <span id="totalmember">@ViewBag.totalMember</span>
+                        </div>
+                        <div>Members</div>
+                    </div>
+                </div>
+            </div>
+            <a href="~/Member/">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="glyphicon glyphicon-circle-arrow-right pull-right"></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <span class="glyphicon glyphicon-globe"></span>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@ViewBag.seat</div>
+                        <div>Available Seats</div>
+                    </div>
+                </div>
+            </div>
+            <a href="~/Room/ManagerView">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="glyphicon glyphicon-circle-arrow-right pull-right"></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <span class="glyphicon glyphicon-globe"></span>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@ViewBag.TotalBalance</div>
+                        <div>Members Dues</div>
+                    </div>
+                </div>
+            </div>
+            <a href="~/MemberPayment">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="glyphicon glyphicon-circle-arrow-right pull-right"></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-10">
+        <div id="chartContainer">
+
+        </div>
+    </div>
+</div>

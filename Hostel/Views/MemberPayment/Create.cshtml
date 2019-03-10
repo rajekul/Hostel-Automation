@@ -1,0 +1,92 @@
+﻿@model MemberPayment
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>MemberPayment</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" name="MemberId" value="@ViewBag.MemberId" />
+        <dl class="dl-horizontal">
+            
+            <dt>
+                Member
+            </dt>
+
+            <dd>
+                @ViewBag.MemberName
+            </dd>
+            <dt>
+                Room
+            </dt>
+
+            <dd>
+                @ViewBag.Room
+            </dd>
+            <dt>
+                Seat Rent
+            </dt>
+
+            <dd>
+                @ViewBag.Rent
+            </dd>
+            <dt class="text-danger">
+                Bill
+            </dt>
+
+            <dd class="text-danger">
+                @ViewBag.bill
+            </dd>
+            <dt class="text-danger">
+                Paid
+            </dt>
+
+            <dd class="text-danger">
+                @ViewBag.pay
+            </dd>
+            <dt class="text-danger">
+                Balance
+            </dt>
+
+            <dd class="text-danger">
+                @ViewBag.balance
+            </dd>
+            
+        </dl>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Credit, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Credit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Credit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

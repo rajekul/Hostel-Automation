@@ -1,0 +1,95 @@
+﻿@model Hostel
+
+@{
+    ViewBag.Title = "Hostel Info";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Hostel Information</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<h4>
+    <div class="row">
+        <dl class="dl-horizontal bg-success" style="padding:20px">
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.HostelName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HostelName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HostelTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HostelTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Area)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Area)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Road)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Road)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.House)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.House)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HostelLogo)
+            </dt>
+            <dd>
+                <img src="~/Uploads/Logos/@Html.DisplayFor(model => model.HostelLogo)" class="img-thumbnail" alt="logo" width="250" height="200" />
+            </dd>
+
+        </dl>
+    </div>
+</h4>
+<p>
+    <h4>@Html.ActionLink("Edit Hostel Info", "Edit", new { id = Model.HostelId } , new { @class = "btn btn-info btn-large" })</h4>  
+
+</p>

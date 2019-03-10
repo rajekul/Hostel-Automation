@@ -1,0 +1,77 @@
+﻿@model Member
+
+@{
+    ViewBag.Title = "ChangeRoom";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Change Member Room</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="row">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal col-sm-8">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MemberId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MemberName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.MemberName, new { htmlAttributes = new { @class = "form-control" } })
+                    
+                </div>
+            </div>
+
+            <div class="form-group">
+               @Html.LabelFor(model => model.RoomId, "CurrentRoom", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.Room.RoomNo, new { htmlAttributes = new { @class = "form-control" } })
+                    
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoomId, "RoomId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("RoomId", (List<SelectListItem>)ViewBag.RoomsList, htmlAttributes: new { @onchange = "Request(this.value)", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoomId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Change" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+    <div class="col-sm-4 text-danger">
+        <h3><span id="roomInfo"></span></h3>
+    </div>
+    <script>
+        function Request(value) {
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("roomInfo").innerHTML = xmlhttp.responseText;
+                }
+            };
+            xmlhttp.open("GET", "/Room/RoomInfo/" + value, true); //true=Asynchronous Request
+            xmlhttp.send();
+        }
+
+    </script>
+</div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

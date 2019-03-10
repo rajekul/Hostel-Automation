@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Member>
+
+@{
+    ViewBag.Title = "Members";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        $('#names').autocomplete({
+
+            source: '/Member/Search',
+            select: function (event, ui) {
+               // alert("select" + ui.item.label);
+                window.location = "/Member/Searched/" + ui.item.label;
+            }
+        });
+
+    });
+
+</script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Members</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<p>
+    @Html.ActionLink("Add New Member", "Create", null, new { @class = "btn btn-info btn-large" })
+</p>
+
+<div class="input-group custom-search-form col-sm-4 col-sm-offset-8">
+    <input type="text" id="names" class="form-control" placeholder="Search....." />
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+    </span>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Room.RoomNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MemberName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Room.RoomNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MemberName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MemberId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MemberId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MemberId }, new { @class = "text-danger" })|&nbsp
+                        @Html.ActionLink("Change Room", "ChangeRoom", new { id = item.MemberId }, new { @class = "btn btn-success btn-large" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+﻿@model IEnumerable<EmployeeSalary>
+
+@{
+    ViewBag.Title = "Salaries";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#names').autocomplete({
+
+            source: '/Employee/Search',
+            select: function (event, ui) {
+                // alert("select" + ui.item.label);
+                window.location = "/EmployeeSalary/Searched/" + ui.item.label;
+            }
+        });
+
+    });
+    $(function () {
+
+        $('#dayfrom').datepicker({
+
+        });
+        $("#dayfrom").datepicker("option", "dateFormat", "yy-mm-dd");
+    });
+    $(function () {
+
+        $('#dayto').datepicker({
+
+            onSelect: function (date) {
+                window.location = "/EmployeeSalary/Searched/" + $('#dayfrom').val() + "/" + date;
+            }
+        });
+        $("#dayto").datepicker("option", "dateFormat", "yy-mm-dd");
+
+
+    });
+
+</script>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Employee Salary</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "SalaryCreate", null, new { @class = "btn btn-info btn-large" })
+</p>
+<div class="row">
+    <div class="col-sm-3 col-sm-offset-2">
+        <div class="input-group">
+            <input type="text" id="dayfrom" class="form-control" placeholder="Date form" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="input-group">
+            <input type="text" id="dayto" class="form-control" placeholder="Date To" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="input-group">
+            <input type="text" id="names" class="form-control" placeholder="Search by Name or phone" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <h4 >Total Pay : @ViewBag.TotalPay</h4>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee.Building.BuildingName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PayDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AmmountPaid)
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.Building.BuildingName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PayDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Details)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmmountPaid)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
